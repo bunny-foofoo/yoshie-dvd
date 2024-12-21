@@ -51,9 +51,9 @@ export default function Home() {
             {bounces === 1 && "once." || bounces > 1 && `${bounces} times. `}
             {funText(bounces)}
           </p>
-          <div className="bg-[hsl(0,0%,3%)] w-72 h-48 md:w-[48rem] md:h-[32rem] outline-[hsl(0,0%,32%)] outline outline-1">
+          <div className="bg-[hsl(0,0%,3%)] w-72 h-48 md:w-[48rem] md:h-[32rem] outline-[hsl(0,0%,32%)] outline outline-1 overflow-hidden">
             <motion.div
-              className="bg-[hsl(0,0%,3%)] md:h-32 md:w-32 h-12 w-12 outline outline-[hsla(1,86%,49%,0.25)] outline-1"
+              className="bg-[hsl(0,0%,3%)] md:h-32 md:w-32 h-12 w-12 outline outline-[hsla(1,86%,49%,0.25)] outline-1 shadow-2xl shadow-[hsla(1,86%,49%,0.05)]"
               layoutId="yoshie"
               animate={{
                 x: ["0%", "500%", "0%"],
@@ -69,14 +69,14 @@ export default function Home() {
                     setIsSpinning(true);
                     setTimeout(() => {
                       setIsSpinning(false);
-                    }, 750);
+                    }, 1500);
                   }
                 }
               }
               transition={{
                 x: {duration: 5, repeat: Infinity, ease: "linear"},
                 y: {duration: 7, repeat: Infinity, ease: "linear"},
-                rotate: {duration: 0.75, ease: "easeIn"}
+                rotate: {duration: 1.5, ease: "easeIn"}
               }}
               >
               <Image
