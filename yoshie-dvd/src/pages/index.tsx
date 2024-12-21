@@ -11,7 +11,7 @@ const funText = (boings: number) => {
   } else if (boings >= 35) {
     return "yoshie is unstoppable!";
   } else if (boings >= 25) {
-    return "yoshie, dominating!";
+    return "yoshie is dominating!";
   } else if (boings >= 15) {
     return "i wonder if she is tired?";
   } else if (boings >= 10) {
