@@ -2,6 +2,26 @@ import Head from "next/head";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { set } from "zod";
+
+const randomizeBallPosition = (width: number, height: number) => {
+  let x = Math.floor(Math.random() * 100);
+  let y = Math.floor(Math.random() * 100);
+
+  if (Math.random() > 0.5) {
+    x = 0 + x;
+  } else {
+    x = width - x - 24;
+  }
+
+  if (Math.random() > 0.5) {
+    y = 0 + y;
+  } else {
+    y = height - y - 24;
+  }
+
+  return [x, y];
+}
 
 export default function Home() {
 
@@ -9,6 +29,9 @@ export default function Home() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [clickX, setClickX] = useState(0);
   const [clickY, setClickY] = useState(0);
+
+  const [ballX, setBallX] = useState(0);
+  const [ballY, setBallY] = useState(0);
 
   const addBounce = () => {
     setBounces(bounces + 1);
@@ -21,14 +44,29 @@ export default function Home() {
         <meta name="description" content="yoshie dvd yoshie dvd yoshie dvd yoshie dvd yoshie dvd" />
         <link rel="icon" href="/yoshie.ico" />
       </Head>
-      <main className="min-h-screen bg-gradient-to-b from-[#4b8a41] to-[#076914]"
+      <main className="min-h-screen bg-gradient-to-b to-[#3d9146] from-[#07690f] overflow-hidden"
       onClick={(e) => {
         setClickX(e.clientX - 64);
         setClickY(e.clientY - 72);
+        // random position for the ball up to the current window size
+        const [width, height] = randomizeBallPosition(window.innerWidth, window.innerHeight);
+        setBallX(width ?? 0);
+        setBallY(height ?? 0);
       }}>
-        <div className="container"
+          <motion.div
+            className="bg-rose-400 rounded-full h-6 w-6 absolute shadow-ball outline outline-[hsla(0,0%,10%,0.25)] outline-1"
+            layoutId="ball"
+            animate={{
+              x: [ballX, clickX + 64 - 12],
+              y: [ballY, clickY + 72 - 12]
+            }}
+            transition={{
+              x: {duration: 0.2, repeat: 0, ease: "easeOut"},
+              y: {duration: 0.2, repeat: 0, ease: "easeIn"},
+            }}
+          >
+          </motion.div>
 
-        >
           <motion.div
             className="bg-[hsla(0,0%,3%,0)] md:h-32 md:w-32 h-12 w-12 drop-shadow-2xl"
             layoutId="yoshie"
@@ -64,7 +102,6 @@ export default function Home() {
               className="md:h-32 md:w-32 h-12 w-12"
             />
           </motion.div>
-        </div>
       </main>
     </>
   );
