@@ -46,19 +46,19 @@ export default function Home() {
       </Head>
       <main className="min-h-screen bg-gradient-to-b to-[#3d9146] from-[#07690f] overflow-hidden"
       onClick={(e) => {
-        setClickX(e.clientX - 64);
-        setClickY(e.clientY - 72);
+        setClickX(e.clientX);
+        setClickY(e.clientY);
         // random position for the ball up to the current window size
         const [width, height] = randomizeBallPosition(window.innerWidth, window.innerHeight);
         setBallX(width ?? 0);
         setBallY(height ?? 0);
       }}>
           <motion.div
-            className="bg-rose-400 rounded-full h-6 w-6 absolute shadow-ball outline outline-[hsla(0,0%,10%,0.25)] outline-1"
+            className="bg-rose-400 rounded-full h-3 w-3 md:h-6 md:w-6 -mx-1 -my-1 md:-mx-3 md:-my-3 absolute shadow-ball outline outline-[hsla(0,0%,10%,0.25)] outline-1"
             layoutId="ball"
             animate={{
-              x: [ballX, clickX + 64 - 12],
-              y: [ballY, clickY + 72 - 12]
+              x: [ballX, clickX],
+              y: [ballY, clickY]
             }}
             transition={{
               x: {duration: 0.2, repeat: 0, ease: "easeOut"},
@@ -68,7 +68,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="bg-[hsla(0,0%,3%,0)] md:h-32 md:w-32 h-12 w-12 drop-shadow-2xl"
+            className="bg-[hsla(0,0%,3%,0)] md:h-32 md:w-32 h-12 w-12 -mx-6 -my-6 md:-mx-16 md:-my-16 drop-shadow-2xl"
             layoutId="yoshie"
             animate={{
               x: [null, clickX],
