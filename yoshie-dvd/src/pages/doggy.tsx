@@ -41,7 +41,7 @@ export default function Home() {
     <>
       <Head>
         <title>YOSHIE!</title>
-        <meta name="description" content="yoshie dvd yoshie dvd yoshie dvd yoshie dvd yoshie dvd" />
+        <meta name="description" content="yoshie go fetch! yoshie go walk walk!" />
         <link rel="icon" href="/yoshie.ico" />
       </Head>
       <main className="min-h-screen bg-gradient-to-b to-[#3d9146] from-[#07690f] overflow-hidden"
